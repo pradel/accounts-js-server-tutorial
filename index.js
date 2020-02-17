@@ -1,4 +1,6 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer, gql, makeExecutableSchema } = require("apollo-server");
+const { mergeTypeDefs, mergeResolvers } = require("graphql-toolkit");
+const { AccountsModule } = require("@accounts/graphql-api");
 const mongoose = require("mongoose");
 const { Mongo } = require("@accounts/mongo");
 const { AccountsServer } = require("@accounts/server");
@@ -43,7 +45,19 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+// We generate the accounts-js GraphQL module
+const accountsGraphQL = AccountsModule.forRoot({ accountsServer });
+
+// A new schema is created combining our schema and the accounts-js schema
+const schema = makeExecutableSchema({
+  typeDefs: mergeTypeDefs([typeDefs, accountsGraphQL.typeDefs]),
+  resolvers: mergeResolvers([accountsGraphQL.resolvers, resolvers]),
+  schemaDirectives: {
+    ...accountsGraphQL.schemaDirectives
+  }
+});
+
+const server = new ApolloServer({ schema, context: accountsGraphQL.context });
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
