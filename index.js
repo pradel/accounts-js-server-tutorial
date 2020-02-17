@@ -35,7 +35,7 @@ const accountsServer = new AccountsServer(
 const typeDefs = gql`
   type Query {
     # This query will be protected so only authenticated users can access it
-    sensitiveInformation: String
+    sensitiveInformation: String @auth
   }
 `;
 
