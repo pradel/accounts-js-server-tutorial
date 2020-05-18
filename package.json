@@ -9,14 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@accounts/graphql-api": "^0.22.0",
-    "@accounts/mongo": "^0.22.0",
-    "@accounts/password": "^0.22.0",
-    "@accounts/server": "^0.22.0",
-    "@graphql-modules/core": "^0.7.14",
-    "apollo-server": "^2.10.0",
-    "graphql": "^14.6.0",
-    "graphql-toolkit": "^0.7.5",
-    "mongoose": "^5.9.1"
+    "@accounts/graphql-api": "^0.25.4",
+    "@accounts/mongo": "^0.25.4",
+    "@accounts/password": "^0.25.4",
+    "@accounts/server": "^0.25.4",
+    "@graphql-modules/core": "^0.7.17",
+    "@graphql-toolkit/schema-merging": "^0.10.7",
+    "apollo-server": "^2.13.1",
+    "graphql": "^15.0.0",
+    "mongoose": "^5.9.14"
   }
 }
