@@ -1,5 +1,5 @@
 const { ApolloServer, gql, makeExecutableSchema } = require("apollo-server");
-const { mergeTypeDefs, mergeResolvers } = require("@graphql-toolkit/schema-merging");
+const { mergeTypeDefs, mergeResolvers } = require("@graphql-tools/merge");
 const { AccountsModule } = require("@accounts/graphql-api");
 const mongoose = require("mongoose");
 const { Mongo } = require("@accounts/mongo");
